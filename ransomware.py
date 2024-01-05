@@ -44,6 +44,7 @@ def generate_key(password, salt_size=16, load_existing_salt=False, save_salt=Tru
 # FILE ENCRYPTION
 def encrypt(filename, key):
     """Given a filename (str) and key (bytes), it encrypts the file and write it"""
+    print(f"[*] Encrypting {filename}")
     f = Fernet(key)
     with open(filename, "rb") as file:
         # read all file data
@@ -57,6 +58,7 @@ def encrypt(filename, key):
 # FILE DECRYPTION
 def decrypt(filename, key):
     """Given a filename (str) and key (bytes), it decrypts the file and write it"""
+    print(f"[*] Decrypting {filename}")
     f = Fernet(key)
     with open(filename, "rb") as file:
         # read the encrypted data
@@ -109,14 +111,28 @@ def decrypt_folder(foldername, key):
 # display-banner
 def display_banner():
     print(f"{Fore.GREEN}File Encryptor by https://github.com/SumVir {Style.RESET_ALL}")
+    print(f"{Fore.WHITE}S{Style.RESET_ALL}{Fore.RED}A{Style.RESET_ALL}{Fore.WHITE}I{Style.RESET_ALL}{Fore.RED}D{Style.RESET_ALL}")
     print("Encrypt and decrypt files/folders securely.")
+
+    print(f"{Fore.GREEN}                  /|  /|  --------------------------- {Style.RESET_ALL}")
+    print(f"{Fore.GREEN}                  ||__||  |   I have a horny little |{Style.RESET_ALL}")  
+    print(f"{Fore.GREEN}                 /   O O\__     operating system    |{Style.RESET_ALL}")  
+    print(f"{Fore.GREEN}                /          \                        |{Style.RESET_ALL}")  
+    print(f"{Fore.GREEN}               /      \     \  www.saidsecurity.com |{Style.RESET_ALL}")
+    print(f"{Fore.GREEN}              /   _    \     \ ----------------------{Style.RESET_ALL}")
+    print(f"{Fore.GREEN}             /    |\____\     \      ||{Style.RESET_ALL}")
+    print(f"{Fore.GREEN}            /     | | | |\____/      ||{Style.RESET_ALL}")
+    print("")
+    print("Don't lose salt.salt file, it's important for decrypting.")
+    print(f"{Fore.RED}USAGE: -h shows help  -e to encrypt   -d to decrypt, -s salt size.")
+    print("")
     print()
 
 # Argparse
 if __name__ == "__main__":
     display_banner()
     import argparse
-    parser = argparse.ArgumentParser(description="File Encryptor Script with a Password")
+    parser = argparse.ArgumentParser(description="Ransomware Script with a Password by SumVir on Github")
     parser.add_argument("path", help="Path to encrypt/decrypt, can be a file or an entire folder")
     parser.add_argument("-s", "--salt-size", help="If this is set, a new salt with the passed size is generated",type=int)
     parser.add_argument("-e", "--encrypt", action="store_true",
@@ -129,10 +145,10 @@ if __name__ == "__main__":
     
     # get the password
     if args.encrypt:
-        password = getpass.getpass("Enter the password for encryption: ")
+        password = input("Enter the password for encryption: ")
     
     elif args.decrypt:
-        password = getpass.getpass("Enter the password you used for encryption: ")
+        password = input("Enter the same password you used for encryption: ")
     
     # generate the key
     if args.salt_size:
@@ -163,4 +179,5 @@ if __name__ == "__main__":
             decrypt_folder(args.path, key)
     else:
         raise TypeError("Please specify whether you want to encrypt the file or decrypt it. ")
+
 
