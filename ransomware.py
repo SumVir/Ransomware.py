@@ -3,6 +3,7 @@ import secrets
 import os
 import base64
 import getpass
+import sys
 from colorama import Fore, Style 
 import cryptography
 from cryptography.fernet import Fernet
@@ -110,8 +111,9 @@ def decrypt_folder(foldername, key):
 
 # display-banner
 def display_banner():
+    print("")
     print(f"{Fore.GREEN}File Encryptor by https://github.com/SumVir {Style.RESET_ALL}")
-    print(f"{Fore.WHITE}S{Style.RESET_ALL}{Fore.RED}A{Style.RESET_ALL}{Fore.WHITE}I{Style.RESET_ALL}{Fore.RED}D{Style.RESET_ALL}")
+    print(f"{Fore.BLACK}S{Style.RESET_ALL}{Fore.RED}A{Style.RESET_ALL}{Fore.BLACK}I{Style.RESET_ALL}{Fore.RED}D{Style.RESET_ALL}")
     print("Encrypt and decrypt files/folders securely.")
 
     print(f"{Fore.GREEN}                  /|  /|  --------------------------- {Style.RESET_ALL}")
@@ -123,17 +125,17 @@ def display_banner():
     print(f"{Fore.GREEN}             /    |\____\     \      ||{Style.RESET_ALL}")
     print(f"{Fore.GREEN}            /     | | | |\____/      ||{Style.RESET_ALL}")
     print("")
-    print("Don't lose salt.salt file, it's important for decrypting.")
-    print(f"{Fore.RED}USAGE: -h shows help  -e to encrypt   -d to decrypt, -s salt size.")
-    print(f"{Fore.BLUE}EXAMPLE: python ransomware.py -e filename -s 32 ")
-    print("")
+    print(f"{Fore.RED}Don't lose salt.salt file, it's important for decrypting. {Style.RESET_ALL}")
+    
     print()
+
 
 # Argparse
 if __name__ == "__main__":
     display_banner()
     import argparse
-    parser = argparse.ArgumentParser(description="Ransomware Script with a Password by SumVir on Github")
+    parser = argparse.ArgumentParser(description="", usage="python ransomware.py '-h' shows help menu  '-e' to encrypt   '-d' to decrypt, '-s' salt size.")
+
     parser.add_argument("path", help="Path to encrypt/decrypt, can be a file or an entire folder")
     parser.add_argument("-s", "--salt-size", help="If this is set, a new salt with the passed size is generated",type=int)
     parser.add_argument("-e", "--encrypt", action="store_true",
@@ -141,6 +143,11 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--decrypt", action="store_true",
                         help="Whether to decrypt the file/folder, only -e or -d can be specified." )
     
+    # Check for help option
+    if len(sys.argv) == 1 or (len(sys.argv) == 2 and (sys.argv[1] == '-h' or sys.argv[1] == '--help')):
+        parser.print_help()
+        sys.exit(1)
+
     # parse the arguments
     args = parser.parse_args()
     
@@ -180,5 +187,6 @@ if __name__ == "__main__":
             decrypt_folder(args.path, key)
     else:
         raise TypeError("Please specify whether you want to encrypt the file or decrypt it. ")
+
 
 
