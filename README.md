@@ -1,7 +1,8 @@
 # File Encryptor
-
 This is a simple file encryptor script for educational purposes only.
 
+## Show Help menu
+python ransomware.py -h
 ## Usage  ↓ ↓ ↓ 
 
 ### Encryption
