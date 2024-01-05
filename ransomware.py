@@ -125,6 +125,7 @@ def display_banner():
     print("")
     print("Don't lose salt.salt file, it's important for decrypting.")
     print(f"{Fore.RED}USAGE: -h shows help  -e to encrypt   -d to decrypt, -s salt size.")
+    print(f"{Fore.BLUE}EXAMPLE: python ransomware.py -e filename -s 32 ")
     print("")
     print()
 
