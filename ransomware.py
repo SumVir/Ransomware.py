@@ -163,11 +163,4 @@ if __name__ == "__main__":
             decrypt_folder(args.path, key)
     else:
         raise TypeError("Please specify whether you want to encrypt the file or decrypt it. ")
-try:
-    key = generate_key(password, salt_size=args.salt_size, save_salt=True)
-    if args.encrypt:
-        encrypt(args.path, key)
-    elif args.decrypt:
-        decrypt(args.path, key)
-except Exception as e:
-    print(f"{Fore.RED}[Error]{Style.RESET_ALL} {e}")
+
