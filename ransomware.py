@@ -160,6 +160,8 @@ if __name__ == "__main__":
     
     # generate the key
     if args.salt_size:
+        if args.salt_size:
+            raise ValueError("[!] Error: You cannot use the -s option during decryption.")
         key = generate_key(password, salt_size=args.salt_size, save_salt=True)
     else:
         key = generate_key(password, load_existing_salt=True)
