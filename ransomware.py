@@ -113,7 +113,7 @@ def decrypt_folder(foldername, key):
 def display_banner():
     print("")
     print(f"{Fore.GREEN}File Encryptor by https://github.com/SumVir {Style.RESET_ALL}")
-    print(f"{Fore.BLACK}S{Style.RESET_ALL}{Fore.RED}A{Style.RESET_ALL}{Fore.BLACK}I{Style.RESET_ALL}{Fore.RED}D{Style.RESET_ALL}")
+    print(f"{Fore.RED}S{Style.RESET_ALL}{Fore.RED}A{Style.RESET_ALL}{Fore.RED}I{Style.RESET_ALL}{Fore.RED}D{Style.RESET_ALL}")
     print("Encrypt and decrypt files/folders securely.")
 
     print(f"{Fore.GREEN}                  /|  /|  --------------------------- {Style.RESET_ALL}")
